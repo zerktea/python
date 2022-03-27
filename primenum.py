@@ -12,7 +12,7 @@ YELLOW = (251, 206, 177)
 WHITE = (255, 255, 255)
 WIDTH, HEIGHT = 1200, 720
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-window.fill(RED)
+window.fill(WHITE)
 pygame.display.set_caption("Prime Numbers Game")
 
 
@@ -28,13 +28,13 @@ def display_number(num, Xpos, Ypos, primecounter):
     pygame.draw.rect(window, YELLOW, pygame.Rect(0, 0, 1800, 50))
 
     BOLD = False
-    Textcolor = YELLOW
+    Textcolor = WHITE
     if(is_prime(num)):
         Textcolor = BLACK
 
     myFont = pygame.font.SysFont("Times New Roman", 18, 1)
 
-    pygame.draw.line(window, Textcolor, (Xpos, Ypos), (Xpos, Ypos+4), 5)
+    pygame.draw.line(window, Textcolor, (Xpos, Ypos), (Xpos, Ypos), 1)
     numofprime = myFont.render(
         str(primecounter), True, BLACK)
     window.blit(numofprime, (200, 10))
@@ -54,7 +54,7 @@ def main():
     primecounter = 0
     Xpos = WIDTH/2
     Ypos = HEIGHT/2
-    Xstep = 5
+    Xstep = 1
     Ystep = 0
     Mxmovpercyc = 1
     crntmov = 0
@@ -62,7 +62,7 @@ def main():
     run = True
     i = 0
     while run:
-        clockobject.tick(15)
+        clockobject.tick(240)
         pygame.display.flip()
 
         i = i+1
@@ -74,16 +74,16 @@ def main():
         if(crntmov == Mxmovpercyc):
             if(Xstep < 0):
                 Xstep = 0
-                Ystep = 5
+                Ystep = 1
             elif(Xstep > 0):
                 Xstep = 0
-                Ystep = -5
+                Ystep = -1
             elif(Ystep < 0):
                 Ystep = 0
-                Xstep = -5
+                Xstep = -1
             else:
                 Ystep = 0
-                Xstep = 5
+                Xstep = 1
 
             crntmov = 0
             Mxmovpercyc = Mxmovpercyc + 1
